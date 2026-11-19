@@ -1,0 +1,130 @@
+:root {
+  --ink: #15181b;
+  --muted: #5f686d;
+  --paper: #fbfaf7;
+  --card: #ffffff;
+  --accent: #1e5b4f;
+  --rule: #e5e0d6;
+  --tint: #f3efe6;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.012em;
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: 2.35rem; }
+h2 { font-size: 1.4rem; margin-top: 2em; }
+h3 { font-size: 1.1rem; margin-top: 1.6em; }
+
+p { margin: 0 0 1.15em; }
+
+a { color: var(--accent); text-underline-offset: 2px; text-decoration-thickness: 1px; }
+a:hover { color: var(--ink); }
+
+ul, ol { margin: 0 0 1.2em; padding-left: 1.15em; }
+li { margin-bottom: 0.45em; }
+
+.wrap { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+.wide { max-width: 980px; }
+
+/* header */
+.site-head { border-bottom: 1px solid var(--rule); }
+.site-head .inner {
+  max-width: 980px; margin: 0 auto; padding: 20px 24px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+}
+.wordmark {
+  font-family: Georgia, serif; font-size: 18px; letter-spacing: -0.01em;
+  color: var(--ink); text-decoration: none;
+}
+.wordmark span { color: var(--accent); }
+.site-nav a {
+  margin-left: 20px; font-size: 14px; color: var(--muted); text-decoration: none;
+}
+.site-nav a:hover { color: var(--ink); }
+
+/* hero */
+.hero { padding: 68px 0 44px; }
+.kicker {
+  font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 18px;
+}
+.hero h1 { font-size: 2.6rem; max-width: 15ch; }
+.lede { font-size: 1.16rem; color: #2c3338; max-width: 56ch; margin-top: 20px; }
+
+/* post list */
+.section-label {
+  font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase;
+  color: var(--muted); padding-top: 26px; border-top: 1px solid var(--rule);
+  margin-bottom: 26px;
+}
+.post-list { list-style: none; padding: 0; margin: 0 0 20px; }
+.post-list li { margin: 0; border-bottom: 1px solid var(--rule); }
+.post-list a { display: block; padding: 22px 0; text-decoration: none; color: inherit; }
+.post-list a:hover h2 { color: var(--accent); }
+.post-list h2 { font-size: 1.3rem; margin: 0 0 6px; }
+.post-list .meta { font-size: 13px; color: var(--muted); margin: 0; }
+.post-list p.summary { margin: 10px 0 0; color: #3b4348; font-size: 15.5px; }
+
+/* article */
+article { padding: 46px 0 20px; }
+article .head { margin-bottom: 34px; }
+article h1 { font-size: 2.15rem; }
+.post-meta {
+  font-size: 13.5px; color: var(--muted); margin: 14px 0 0;
+  padding-bottom: 22px; border-bottom: 1px solid var(--rule);
+}
+article h2 { color: var(--ink); }
+article strong { font-weight: 600; }
+
+.note {
+  background: var(--tint); border-left: 3px solid var(--accent);
+  padding: 18px 20px; margin: 26px 0; font-size: 15.5px;
+}
+.note p:last-child { margin-bottom: 0; }
+.note .note-label {
+  display: block; font-size: 11.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+}
+
+.review-line {
+  font-size: 13px; color: var(--muted); margin: 34px 0 0;
+  padding-top: 14px; border-top: 1px solid var(--rule);
+}
+
+/* about + footer */
+.about-block {
+  background: var(--card); border: 1px solid var(--rule);
+  padding: 26px 28px; margin: 10px 0 40px;
+}
+.site-foot {
+  border-top: 1px solid var(--rule); margin-top: 50px;
+  padding: 26px 0 46px; font-size: 13.5px; color: var(--muted);
+}
+.site-foot p { margin: 0 0 8px; }
+
+@media (max-width: 640px) {
+  body { font-size: 16.5px; }
+  .hero { padding: 44px 0 30px; }
+  .hero h1 { font-size: 1.95rem; }
+  h1 { font-size: 1.75rem; }
+  article h1 { font-size: 1.7rem; }
+  .site-head .inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .site-nav a { margin-left: 0; margin-right: 18px; }
+}

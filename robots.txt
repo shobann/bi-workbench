@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bi-workbench.pages.dev/sitemap.xml
+Sitemap: https://thebiworkbench.com/sitemap.xml

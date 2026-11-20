@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What a stakeholder sees in your dashboard in the first ten seconds — The BI Workbench</title>
+  <meta name="description" content="Five things a reader checks before they read a single chart, and the details that quietly undermine an otherwise good dashboard.">
+  <link rel="canonical" href="https://thebiworkbench.com/posts/dashboard-first-ten-seconds">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="The BI Workbench">
+  <meta property="og:title" content="What a stakeholder sees in your dashboard in the first ten seconds">
+  <meta property="og:description" content="Five things a reader checks before they read a single chart, and the details that quietly undermine an otherwise good dashboard.">
+  <meta property="og:url" content="https://thebiworkbench.com/posts/dashboard-first-ten-seconds">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What a stakeholder sees in your dashboard in the first ten seconds">
+  <meta name="twitter:description" content="Five things a reader checks before they read a single chart, and the details that quietly undermine an otherwise good dashboard.">
+  <link rel="stylesheet" href="../assets/style.css?v=4">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="inner">
+    <a class="wordmark" href="../index.html">The BI <span>Workbench</span></a>
+    <nav class="site-nav">
+      <a href="../index.html">Writing</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<article class="wrap">
+  <div class="head">
+    <h1>What a stakeholder sees in your dashboard in the first ten seconds</h1>
+    <p class="post-meta">5 min read &middot; Dashboard design &middot; Reviewed 19 November 2026</p>
+  </div>
+
+  <p>A director opening your dashboard isn't studying it. They're scanning, the way you scan a document you've been sent, looking for a reason to read on or a reason to go back to their inbox.</p>
+
+  <p>The ten seconds aren't really about design taste. They're about whether the dashboard answers four questions the reader can't ask you, because you're not in the room.</p>
+
+  <h2>1. What question is this answering?</h2>
+
+  <p>A title that says "Sales Dashboard" tells the reader nothing except that you know how to type a title. "Which regions are missing their quarterly target, and why" tells them someone was given a problem.</p>
+
+  <p>This is the cheapest improvement available to any dashboard, and it's the one most often skipped. Naming the question also protects you: a report that claims to answer one question is much harder to blame for not answering a different one.</p>
+
+  <h2>2. What is the number?</h2>
+
+  <p>If everything on the page has the same visual weight, nothing is the answer. One figure should be large enough to read from across a desk, and the rest should support it.</p>
+
+  <p>The reader's instinct is to look for the thing you'd say first if you had thirty seconds with them. If it takes more than five seconds to find, they'll conclude the analysis had no conclusion.</p>
+
+  <h2>3. Can I trust it?</h2>
+
+  <p>Three small details do almost all of this work:</p>
+
+  <ul>
+    <li><strong>Units.</strong> Revenue in dollars or thousands? A rate in percent or basis points?</li>
+    <li><strong>Date range and freshness.</strong> "Last 90 days" ages badly and is better than nothing; a hard-coded range with no label is worse than useless. Say when it last refreshed.</li>
+    <li><strong>Source.</strong> One line naming where the data came from. It signals that you know a dashboard is an argument about somebody else's data, not a decoration.</li>
+  </ul>
+
+  <p>If the data is sensitive — patient, member or personnel data — the reader also needs to know what they're allowed to do with it. A short line saying the report is restricted to aggregated figures prevents a conversation that is much worse later.</p>
+
+  <h2>4. Do the visuals earn their space?</h2>
+
+  <p>Every chart on the page is a claim that this breakdown matters. Twelve charts isn't thoroughness, it's a refusal to decide.</p>
+
+  <p>The usual offenders, roughly in order of how often they appear:</p>
+
+  <ul>
+    <li>A donut chart with nine slices, three of them under 4%.</li>
+    <li>A pie chart of something that doesn't sum to a meaningful whole.</li>
+    <li>A line chart with no axis labels, so the trend could be anything.</li>
+    <li>A table of 200 rows pasted in because a chart felt like work.</li>
+    <li>Colour used decoratively, so nothing on the page means "look here".</li>
+  </ul>
+
+  <p>None of these are crimes on their own. Together they read as someone who built what the tool offered rather than what the question needed.</p>
+
+  <div class="note">
+    <span class="note-label">The test that matters</span>
+    <p>Ask yourself what a manager would say if they saw this and disagreed with it. If the answer is "I'm not sure what they'd be disagreeing with", the dashboard is a picture, not an analysis.</p>
+  </div>
+
+  <h2>5. Is there a sentence?</h2>
+
+  <p>The strongest dashboards include one plain sentence of interpretation, as a subtitle or a callout: "Two of six regions are below target, and both are short on repeat customers rather than new ones."</p>
+
+  <p>Analysts resist this. It feels like editorialising, or like doing the manager's thinking for them. In practice it's the opposite: it shows the reader what you saw, and it invites exactly the argument a good report should start. A reader who disagrees with your sentence is now engaged with your work, which is a much better outcome than a reader who quietly closes the tab.</p>
+
+  <h2>A ten-second checklist</h2>
+
+  <ol>
+    <li>Does the title state a question or a decision?</li>
+    <li>Is there one number bigger than everything else?</li>
+    <li>Are units, date range, freshness and source visible?</li>
+    <li>Would you delete half of these charts if you had to?</li>
+    <li>Is there one sentence saying what it means?</li>
+  </ol>
+
+  <p>If all five are yes, the reader is still there at second eleven. That's the whole game.</p>
+  <p class="review-line">Reviewed 19 November 2026. Design advice ages slower than tool advice, but the ten-second test is still an opinion — if it fails on your dashboards, <a href="mailto:tulashobhan@gmail.com">say so</a>.</p>
+</article>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>The BI Workbench. Written by Shobhan Tula, a BI developer in Tampa.</p>
+    <p><a href="../index.html">&larr; All writing</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Two reports, two numbers: find where the definitions diverged — The BI Workbench</title>
+  <meta name="description" content="Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.">
+  <link rel="canonical" href="https://thebiworkbench.com/posts/why-two-reports-disagree">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="The BI Workbench">
+  <meta property="og:title" content="Two reports, two numbers: find where the definitions diverged">
+  <meta property="og:description" content="Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.">
+  <meta property="og:url" content="https://thebiworkbench.com/posts/why-two-reports-disagree">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Two reports, two numbers: find where the definitions diverged">
+  <meta name="twitter:description" content="Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.">
+  <link rel="stylesheet" href="../assets/style.css?v=4">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="inner">
+    <a class="wordmark" href="../index.html">The BI <span>Workbench</span></a>
+    <nav class="site-nav">
+      <a href="../index.html">Writing</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<article class="wrap">
+  <div class="head">
+    <h1>Two reports, two numbers: find where the definitions diverged</h1>
+    <p class="post-meta">7 min read &middot; Data modeling, Governance &middot; Reviewed 24 November 2026</p>
+  </div>
+
+  <p>A finance director has two reports open on the same screen. Both claim to show revenue for October. The numbers differ by an amount that matters, and the meeting is in an hour. Someone asks which one is right, and the honest answer is that you don't know yet.</p>
+
+  <p>I've been on both sides of that question — defending a number, and being the person who quietly undermined one. What I've taken from it is that this is rarely a bug. A report doesn't produce a number. It produces a number plus a dozen decisions about what to include, most of them made by someone who has since moved to another team.</p>
+
+  <h2>Both numbers are usually right</h2>
+
+  <p>Drop the assumption that one of them is broken. In the reconciliations I've worked through, both reports were computing exactly what they had been told to compute. They were answering slightly different questions, and both were labeled Revenue — October.</p>
+
+  <p>That's not a software failure. It's a naming failure, and it's harder to fix, because nothing crashes and no one gets paged. Two definitions can both be correct for their own purpose. They just can't both be called the same name without someone eventually comparing them in a meeting.</p>
+
+  <p>So the job isn't to find the wrong report. It's to find the point where two paths split, and then decide which path the number should take.</p>
+
+  <h2>Start with what each report claims, not with its query</h2>
+
+  <p>Before opening a single line of SQL, write five things down for each report: the measure, the period, the grain, the population, and the as-of time. Five lines each, taken from the report and its metadata rather than from memory, in a document both report owners can see.</p>
+
+  <ul>
+    <li><strong>Measure.</strong> Gross or net? Units or dollars? What exactly is summed?</li>
+    <li><strong>Period.</strong> Which date column, and is the boundary inclusive on both ends?</li>
+    <li><strong>Grain.</strong> One row per order, per order line, per customer, per day?</li>
+    <li><strong>Population.</strong> Which statuses, regions or account types are in, and which are deliberately out?</li>
+    <li><strong>As-of time.</strong> When did the underlying data last refresh, and does either report lag behind that?</li>
+  </ul>
+
+  <p>Often the disagreement is visible right there, before any digging, because one report is counting order lines and the other is counting orders. When it isn't, you now have the two claims written down, which turns a vague argument into two specific statements you can test.</p>
+
+  <p>If you can't fill in one of the five from the report itself, that is already a finding. The report isn't self-describing, and the next person to open it will have the same argument with the same information you have.</p>
+
+  <h2>Count rows before you compare sums</h2>
+
+  <p>Sums tell you that something is different. Counts tell you where.</p>
+
+  <p>Take one report and walk it backward — the sheet or visual, the query behind it, the view that query selects from, the tables under that view. At every layer, count rows with that report's own filters applied, and write the numbers side by side with the same counts from the other report. The first layer where the counts diverge is the layer where the definition forked. Everything above it is downstream noise.</p>
+
+  <p>Count first because the arithmetic is unambiguous. A duplicated join inflates the count by a factor you can see immediately and inflates the sum by a factor you'd otherwise have to guess at. A missing filter removes rows from both, in a proportion you can measure. A stale refresh shows up as a count that's simply lower, with no ambiguity about why.</p>
+
+  <p>The measure comes second, at the layer you just identified. If the counts match there and the sums don't, you're looking at arithmetic or at which records were chosen — not at which rows were included. That distinction saves an afternoon.</p>
+
+  <h2>The five places a definition usually forks</h2>
+
+  <p>Once you've done this a few times you stop expecting a novel cause. The same handful of decisions account for most disagreements I've chased:</p>
+
+  <ul>
+    <li><strong>Grain and join fan-out.</strong> One order with three line items is three rows after the join, so a sum taken after the join counts the order header three times. One report aggregates before joining; the other doesn't.</li>
+    <li><strong>Filters nobody wrote down.</strong> An exclusion for test accounts, a status code that quietly means cancelled, a region that moved to another sales team in a reorganization. Ask why each filter exists, not just what it does. A filter nobody can explain is usually a patch that outlived its problem.</li>
+    <li><strong>Date boundaries and time zones.</strong> October computed in UTC is not October in the source system's local time, and the difference lands at month end where finance looks hardest. Then there's the choice of date column: created, posted and closed all exist on the same record, and all three get called the date in conversation.</li>
+    <li><strong>Deduplication rules.</strong> When a customer has three addresses or an order has four status events, which record wins? Latest by timestamp, earliest, or the one flagged primary are three defensible answers and three different numbers.</li>
+    <li><strong>Measure arithmetic.</strong> Gross versus net of returns and discounts, nulls treated as zero versus excluded, rounding applied at the row level in one place and at the total in the other.</li>
+  </ul>
+
+  <p>In my experience the first two are the common ones by a wide margin. Duplicate rows from a join and an undocumented exclusion account for most of the revenue arguments I've been pulled into, and neither shows up in any documentation.</p>
+
+  <h2>Fix the definition, not the number</h2>
+
+  <p>The tempting repair is to adjust one report until it matches the other. That works for exactly one month. The next time the underlying data shifts, the two reports drift apart again, and now nobody remembers which one was patched to match what.</p>
+
+  <p>Write the metric down once instead: a plain-English sentence, the grain, the inclusions and exclusions, the source of record, a named owner, and the date it was last confirmed. One page per metric that people actually use. I think a short document someone maintains beats a 600-column data dictionary nobody opens, because the dictionary documents columns while the argument is always about decisions.</p>
+
+  <p>Then decide which report becomes the source of record for this number, and where the other one stands. It either points at the same definition or it carries a visible note naming the definition it uses and why. Keeping a second definition is fine — some genuinely serve a different purpose. Presenting it under the same label as the first one is not.</p>
+
+  <h2>The argument costs more than the error</h2>
+
+  <p>A wrong number is expensive once. Two numbers that nobody trusts are expensive every month: analysts spend the morning reconciling, the director decides which report to believe based on who presented it, and the eventual fix gets deprioritized because the number was, in the end, sort of close.</p>
+
+  <p>So I don't treat this as cleanup work. Tracing a definition back to where it forked is the point where the business's language and the warehouse's tables finally have to agree, and that's the most useful modeling work available. The finding is rarely that one report is broken. It's that a decision was made years ago, never written down, and is now nobody's.</p>
+  <p class="review-line">Reviewed 24 November 2026. The tracing method here is not tied to a tool version, but the ways definitions drift do change with how teams build. If your versions of this story end differently, <a href="mailto:tulashobhan@gmail.com">tell me</a>.</p>
+</article>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>The BI Workbench. Written by Shobhan Tula, a BI developer in Tampa.</p>
+    <p><a href="../index.html">&larr; All writing</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

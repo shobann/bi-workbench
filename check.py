@@ -44,6 +44,20 @@ def pages():
                 yield os.path.join(dirpath, name)
 
 
+def resolves(page, target):
+    """True if a link maps to a file.
+
+    Handles /-rooted links, and the clean URLs Cloudflare Pages serves, where
+    /posts/why-two-reports-disagree is posts/why-two-reports-disagree.html.
+    """
+    if target.startswith("/"):
+        base = os.path.normpath(os.path.join(ROOT, target.lstrip("/")))
+    else:
+        base = os.path.normpath(os.path.join(os.path.dirname(page), target))
+    candidates = (base, base + ".html", os.path.join(base, "index.html"))
+    return any(os.path.isfile(candidate) for candidate in candidates)
+
+
 def check_links(path, problems):
     with open(path, encoding="utf-8") as handle:
         parser = Links()
@@ -54,8 +68,7 @@ def check_links(path, problems):
         target = link.split("#")[0].split("?")[0]
         if not target:
             continue
-        resolved = os.path.normpath(os.path.join(os.path.dirname(path), target))
-        if not os.path.exists(resolved):
+        if not resolves(path, target):
             problems.append(f"{os.path.relpath(path, ROOT)}: broken link -> {link}")
 
 
@@ -68,7 +81,7 @@ def check_index(problems):
         markup = handle.read()
     posts = os.path.join(ROOT, "posts")
     for name in sorted(os.listdir(posts)):
-        if name.endswith(".html") and f"posts/{name}" not in markup:
+        if name.endswith(".html") and f"posts/{name[:-5]}" not in markup:
             problems.append(f"posts/{name} is not linked from index.html")
 
 

@@ -108,6 +108,18 @@ article strong { font-weight: 600; }
   padding-top: 14px; border-top: 1px solid var(--rule);
 }
 
+/* read next */
+.read-next { margin: 34px 0 0; }
+.read-next .label {
+  font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 12px;
+}
+.read-next ul { list-style: none; padding: 0; margin: 0; }
+.read-next li { margin: 0 0 14px; font-size: 15.5px; }
+.read-next li a { font-weight: 600; text-decoration: none; }
+.read-next li a:hover { text-decoration: underline; }
+.read-next li span { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+
 /* about + footer */
 .about-block {
   background: var(--card); border: 1px solid var(--rule);

@@ -5,51 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Before you migrate 2,000 workflows, build the inventory — The BI Workbench</title>
   <meta name="description" content="How to inventory and score a large Alteryx or ETL estate before a migration, and why the retire column matters more than the rebuild one.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Before you migrate 2,000 workflows, build the inventory","description":"How to inventory and score a large Alteryx or ETL estate before a migration, and why the retire column matters more than the rebuild one.","url":"https://thebiworkbench.com/posts/workflow-migration-audit","mainEntityOfPage":{"@type":"WebPage","@id":"https://thebiworkbench.com/posts/workflow-migration-audit"},"dateModified":"2026-11-23","author":{"@type":"Person","name":"Shobhan Tula","url":"https://thebiworkbench.com/about"},"publisher":{"@type":"Organization","name":"The BI Workbench","url":"https://thebiworkbench.com"},"image":"https://thebiworkbench.com/assets/share-card.png","articleSection":"Migration, Alteryx","inLanguage":"en"}</script>
   <link rel="canonical" href="https://thebiworkbench.com/posts/workflow-migration-audit">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="The BI Workbench">
-  <meta property="og:title" content="Before you migrate 2,000 workflows, build the inventory">
-  <meta property="og:description" content="How to inventory and score a large Alteryx or ETL estate before a migration, and why the retire column matters more than the rebuild one.">
-  <meta property="og:url" content="https://thebiworkbench.com/posts/workflow-migration-audit">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Before you migrate 2,000 workflows, build the inventory">
-  <meta name="twitter:description" content="How to inventory and score a large Alteryx or ETL estate before a migration, and why the retire column matters more than the rebuild one.">
+  <link rel="alternate" type="application/rss+xml" title="The BI Workbench" href="/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <meta property="og:image" content="https://thebiworkbench.com/assets/share-card.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="The BI Workbench">
+  <meta property="og:title" content="Before you migrate 2,000 workflows, build the inventory — The BI Workbench">
+  <meta property="og:description" content="How to inventory and score a large Alteryx or ETL estate before a migration, and why the retire column matters more than the rebuild one.">
+  <meta property="og:url" content="https://thebiworkbench.com/posts/workflow-migration-audit">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Before you migrate 2,000 workflows, build the inventory — The BI Workbench">
+  <meta name="twitter:description" content="How to inventory and score a large Alteryx or ETL estate before a migration, and why the retire column matters more than the rebuild one.">
+  <meta property="og:image" content="https://thebiworkbench.com/assets/og-workflow-migration-audit.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="The BI Workbench: ten years of dashboards, and what actually broke.">
-  <link rel="stylesheet" href="/assets/style.css?v=5">
+  <link rel="stylesheet" href="/assets/style.css?v=6">
 </head>
-<body>
-
+<body data-post="workflow-migration-audit">
+<div class="progress" aria-hidden="true"><span></span></div>
 <header class="site-head">
   <div class="inner">
-    <a class="wordmark" href="/">The BI <span>Workbench</span></a>
+    <a class="lockup" href="/"><span class="mark">BI</span><span class="wordmark">The BI <b>Workbench</b></span></a>
     <nav class="site-nav">
-      <a href="/">Writing</a>
       <a href="/about">About</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="mailto:tulashobhan@gmail.com">Email</a>
     </nav>
   </div>
 </header>
+<div class="rule"></div>
+<article class="post-grid">
+    <aside class="rail">
+      <p class="mono rail-label">Migration, Alteryx</p>
+      <div class="rail-ticks" aria-hidden="true"></div>
+      <nav class="toc" aria-label="Contents">
+        <p class="mono toc-label">In this piece</p>
+        <ol>
+          <li><a href="#s1"><span>01</span>One row per workflow, and nothing you can't fill in</a></li>
+          <li><a href="#s2"><span>02</span>What "duplicate" actually means</a></li>
+          <li><a href="#s3"><span>03</span>Score complexity on what drives rebuild cost</a></li>
+          <li><a href="#s4"><span>04</span>Check usage against the schedule, not the other way round</a></li>
+          <li><a href="#s5"><span>05</span>The four decisions</a></li>
+          <li><a href="#s6"><span>06</span>The uncomfortable part</a></li>
+        </ol>
+      </nav>
+    </aside>
 
-<article class="wrap">
-  <div class="head">
-    <h1>Before you migrate 2,000 workflows, build the inventory</h1>
-    <p class="post-meta">6 min read &middot; Migration, Alteryx &middot; Reviewed 23 November 2026</p>
-  </div>
+    <div class="post-body">
+      <p class="kicker mono">Article — Migration, Alteryx</p>
+      <h1>Before you migrate 2,000 workflows, build the inventory</h1>
 
-  <p>A platform migration usually starts as a copy job in everyone's head: workflows go in one side and come out the other, on a newer tool. It's an appealing plan because it's easy to schedule and easy to describe to a sponsor.</p>
+      <dl class="specs">
+        <div><dt>Reviewed</dt><dd class="teal">23 Nov 2026</dd></div>
+        <div><dt>Read</dt><dd>6 min</dd></div>
+        <div><dt>Sections</dt><dd>06</dd></div>
+        <div><dt>Field</dt><dd>Migration</dd></div>
+      </dl>
 
-  <p>It also assumes the old estate is a tidy set of things worth keeping. It almost never is. Years of small requests leave behind duplicates, one-off fixes that became permanent, and workflows whose owner left in 2019. Copying all of it faithfully means paying to carry that mess into the new platform, and then maintaining it there.</p>
+      <p class="byline"><span class="mark">BI</span><b>Shobhan Tula</b><span>·</span><span>Tampa, FL</span></p>
+
+      <p class="lede">A platform migration usually starts as a copy job in everyone's head: workflows go in one side and come out the other, on a newer tool. It's an appealing plan because it's easy to schedule and easy to describe to a sponsor.</p>
+
+      <details class="toc-mobile">
+        <summary>Contents — 06 sections</summary>
+        <ol>
+          <li><a href="#s1"><span>01</span>One row per workflow, and nothing you can't fill in</a></li>
+          <li><a href="#s2"><span>02</span>What "duplicate" actually means</a></li>
+          <li><a href="#s3"><span>03</span>Score complexity on what drives rebuild cost</a></li>
+          <li><a href="#s4"><span>04</span>Check usage against the schedule, not the other way round</a></li>
+          <li><a href="#s5"><span>05</span>The four decisions</a></li>
+          <li><a href="#s6"><span>06</span>The uncomfortable part</a></li>
+        </ol>
+      </details>
+
+<p>It also assumes the old estate is a tidy set of things worth keeping. It almost never is. Years of small requests leave behind duplicates, one-off fixes that became permanent, and workflows whose owner left in 2019. Copying all of it faithfully means paying to carry that mess into the new platform, and then maintaining it there.</p>
 
   <p>So the first deliverable isn't a plan. It's an inventory.</p>
 
-  <h2>One row per workflow, and nothing you can't fill in</h2>
-
-  <p>The temptation is a 60-column template. Nobody fills in 60 columns, and the blank ones get ignored at the exact moment you need them. Six fields, honestly completed, will carry a migration:</p>
+      <section id="s1">
+        <h2><span class="num">01</span>One row per workflow, and nothing you can't fill in</h2>
+        <p>The temptation is a 60-column template. Nobody fills in 60 columns, and the blank ones get ignored at the exact moment you need them. Six fields, honestly completed, will carry a migration:</p>
 
   <ul>
     <li><strong>Owner.</strong> A named person, not a team. "The data team" means nobody.</li>
@@ -62,15 +104,19 @@
 
   <p>A spreadsheet is the right tool here. The inventory is a working document that three people will edit in a meeting, not a database.</p>
 
-  <h2>What "duplicate" actually means</h2>
+      </section>
 
-  <p>This is the judgment call that decides how much of the migration you avoid, and it's where most inventories go soft. Two workflows that read the same source and write the same target are not automatically the same workflow. They may run at different frequencies, apply different filters, or serve different consumers who will notice immediately if the definitions merge.</p>
+      <section id="s2">
+        <h2><span class="num">02</span>What "duplicate" actually means</h2>
+        <p>This is the judgment call that decides how much of the migration you avoid, and it's where most inventories go soft. Two workflows that read the same source and write the same target are not automatically the same workflow. They may run at different frequencies, apply different filters, or serve different consumers who will notice immediately if the definitions merge.</p>
 
   <p>The workable test is: <em>would one output, with the union of the logic, satisfy every current consumer?</em> If yes, retire both and build one. If the answer is "probably", it's a no until someone has spoken to the consumers.</p>
 
-  <h2>Score complexity on what drives rebuild cost</h2>
+      </section>
 
-  <p>Complexity scoring usually goes wrong by trying to be precise. A score of 73 out of 100 means nothing to the person funding the project, and nothing to the developer who has to hit a date.</p>
+      <section id="s3">
+        <h2><span class="num">03</span>Score complexity on what drives rebuild cost</h2>
+        <p>Complexity scoring usually goes wrong by trying to be precise. A score of 73 out of 100 means nothing to the person funding the project, and nothing to the developer who has to hit a date.</p>
 
   <p>What works is a small set of bands, each tied to a real cause of effort:</p>
 
@@ -83,15 +129,19 @@
 
   <p>Three bands — small, medium, large — with a one-line reason attached to each, survives a steering committee. A decimal score does not.</p>
 
-  <h2>Check usage against the schedule, not the other way round</h2>
+      </section>
 
-  <p>Scheduler logs tell you a workflow ran. They don't tell you anyone read the output. A daily schedule writing to a table nobody queries looks identical to a critical pipeline.</p>
+      <section id="s4">
+        <h2><span class="num">04</span>Check usage against the schedule, not the other way round</h2>
+        <p>Scheduler logs tell you a workflow ran. They don't tell you anyone read the output. A daily schedule writing to a table nobody queries looks identical to a critical pipeline.</p>
 
   <p>Pair every workflow's runtime with its downstream consumers, and ask the owners directly. "Does anyone use this?" gets a more honest answer in a ten-minute conversation than in a form, and it costs less than migrating something nobody wanted.</p>
 
-  <h2>The four decisions</h2>
+      </section>
 
-  <p>Every row ends in one of four outcomes, and the split between them is the actual value of the exercise:</p>
+      <section id="s5">
+        <h2><span class="num">05</span>The four decisions</h2>
+        <p>Every row ends in one of four outcomes, and the split between them is the actual value of the exercise:</p>
 
   <ol>
     <li><strong>Retire.</strong> No consumers, or superseded by something else. The cheapest migration is the one that doesn't happen.</li>
@@ -104,35 +154,117 @@
     <span class="note-label">What makes it defensible</span>
     <p>Every "retire" needs a named person who agreed to it, and every "rebuild" needs a stated reason it can't be retired. Six months later, when someone asks why their report stopped, that record is the difference between a decision and an accident.</p>
   </div>
+      <figure class="fig">
+        <p class="fig-label mono"><span><b>Fig. 1</b> — The four places a workflow can land</span><span>Schematic</span></p>
+        <svg viewBox="0 0 600 306" role="img" aria-label="A two by two grid. Across: cost to rebuild. Up: anyone still using it. Rebuild as-is in the top left, rebuild simplified in the top right, retire first in the bottom left, leave for now in the bottom right." font-family="IBM Plex Mono, monospace"><g><rect x="332" y="34" width="228" height="112" fill="#efe9d9"/><rect x="104" y="150" width="228" height="112" fill="#efe9d9"/><line x1="96" y1="30" x2="96" y2="272" stroke="rgba(23,20,15,.30)" stroke-width="1"/><line x1="96" y1="272" x2="568" y2="272" stroke="rgba(23,20,15,.30)" stroke-width="1"/><text x="568" y="292" font-size="9" fill="#6a6152" text-anchor="end" font-weight="400" letter-spacing="0.9">COST TO REBUILD →</text><text x="96" y="20" font-size="9" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.9">STILL IN USE ↑</text><line x1="332" y1="30" x2="332" y2="262" stroke="rgba(23,20,15,.13)" stroke-width="1" stroke-dasharray="3 5"/><line x1="96" y1="150" x2="560" y2="150" stroke="rgba(23,20,15,.13)" stroke-width="1" stroke-dasharray="3 5"/><text x="112" y="62" font-size="10" fill="#0d4a47" text-anchor="start" font-weight="500" letter-spacing="1.2">REBUILD AS-IS</text><text x="112" y="83" font-size="10.5" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.3">critical, well understood</text><text x="344" y="62" font-size="10" fill="#0d4a47" text-anchor="start" font-weight="500" letter-spacing="1.2">REBUILD SIMPLIFIED</text><text x="344" y="83" font-size="10.5" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.3">critical, carries years of fixes</text><text x="112" y="178" font-size="10" fill="#0d4a47" text-anchor="start" font-weight="500" letter-spacing="1.2">RETIRE FIRST</text><text x="112" y="199" font-size="10.5" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.3">no consumers left</text><text x="344" y="178" font-size="10" fill="#0d4a47" text-anchor="start" font-weight="500" letter-spacing="1.2">LEAVE FOR NOW</text><text x="344" y="199" font-size="10.5" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.3">unclear owner, low urgency</text></g></svg>
+        <figcaption class="fig-note">Two questions decide a row's fate: is anyone still using it, and what will the rebuild cost. The bottom-left corner is the cheapest migration available, because it is the one that doesn't happen.</figcaption>
+      </figure>
+      </section>
 
-  <h2>The uncomfortable part</h2>
-
-  <p>The inventory will show that a meaningful share of the estate is not worth carrying. That's not a failure of the previous team — it's what any system looks like after a few years of people solving problems under time pressure.</p>
+      <section id="s6">
+        <h2><span class="num">06</span>The uncomfortable part</h2>
+        <p>The inventory will show that a meaningful share of the estate is not worth carrying. That's not a failure of the previous team — it's what any system looks like after a few years of people solving problems under time pressure.</p>
 
   <p>Saying so, with evidence, is the job. The migration plan that follows is smaller, cheaper and more honest than the one everyone imagined at the kickoff, and the people who have to maintain it afterwards will thank you for it.</p>
-  <p class="review-line">Reviewed 23 November 2026. The inventory fields and the retire / rebuild / leave decisions are method, not tool version, so they age slowly — but if your estate works differently, that's worth knowing. <a href="mailto:tulashobhan@gmail.com">Email me</a>.</p>
 
-  <div class="read-next">
-    <p class="label">Read next</p>
-    <ul>
-      <li>
-        <a href="/posts/tableau-performance">Your Tableau dashboard is slow. Check these five things first.</a>
-        <span>What to do when the thing you decide to keep is too slow to keep.</span>
-      </li>
-      <li>
-        <a href="/posts/why-two-reports-disagree">Two reports, two numbers: find where the definitions diverged</a>
-        <span>Two definitions of one metric is how a migration quietly doubles in scope.</span>
-      </li>
-    </ul>
-  </div>
-</article>
+      </section>
+
+      <p class="review-line">Reviewed 23 November 2026. The inventory fields and the retire / rebuild / leave decisions are method, not tool version, so they age slowly — but if your estate works differently, that's worth knowing. <a href="mailto:tulashobhan@gmail.com">Email me</a>.</p>
+
+      <div class="read-next">
+        <p class="label">Read next</p>
+        <ul>
+        <li><a href="/posts/why-two-reports-disagree">Two reports, two numbers: find where the definitions diverged</a><span>Two definitions of one metric is how a migration quietly doubles in scope.</span></li>
+        <li><a href="/posts/tableau-performance">Your Tableau dashboard is slow. Check these five things first.</a><span>What to do when the thing you decide to keep is too slow to keep.</span></li>
+        <li><a href="/posts/dashboard-first-ten-seconds">What a stakeholder sees in your dashboard in the first ten seconds</a><span>If the rebuilt report can't be read in ten seconds, the rebuild isn't finished.</span></li>
+        </ul>
+        <a class="all" href="/">&larr; All writing</a>
+      </div>
+    </div>
+  </article>
 
 <footer class="site-foot">
-  <div class="wrap">
-    <p>The BI Workbench. Written by Shobhan Tula, a BI developer in Tampa.</p>
-    <p><a href="/">&larr; All writing</a></p>
+  <div class="inner">
+    <div>
+      <p class="big">The BI Workbench</p>
+      <p class="mono">Shobhan Tula — Tampa, FL — Opinion and experience, not professional advice</p>
+    </div>
+    <nav class="mono">
+      <a href="/">Writing</a>
+      <a href="/about">About</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="mailto:tulashobhan@gmail.com">Email</a>
+    </nav>
   </div>
 </footer>
+<script>
+(function () {
+  var bar = document.querySelector('.progress span');
+  function paint() {
+    if (!bar) return;
+    var root = document.documentElement;
+    var max = root.scrollHeight - root.clientHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, root.scrollTop / max) : 0) + ')';
+  }
+  window.addEventListener('scroll', paint, { passive: true });
+  window.addEventListener('resize', paint);
+  paint();
 
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  var targets = links.map(function (a) {
+    return document.getElementById(a.getAttribute('href').slice(1));
+  });
+  if (links.length && 'IntersectionObserver' in window) {
+    var seen = [];
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var i = targets.indexOf(e.target);
+        if (i < 0) return;
+        if (e.isIntersecting) {
+          if (seen.indexOf(i) < 0) seen.push(i);
+        } else {
+          seen = seen.filter(function (n) { return n !== i; });
+        }
+      });
+      var active = seen.length ? Math.min.apply(null, seen) : -1;
+      links.forEach(function (a, i) { a.classList.toggle('on', i === active); });
+    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+    targets.forEach(function (t) { if (t) io.observe(t); });
+  }
+
+  var post = document.body.getAttribute('data-post');
+  var ticks = [].slice.call(document.querySelectorAll('.tick'));
+  if (!post || !ticks.length) return;
+  var key = 'biwb-checks-' + post;
+  var count = document.querySelector('[data-tick-count]');
+  function load() {
+    try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { return []; }
+  }
+  function save(v) {
+    try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {}
+  }
+  function paintTicks() {
+    var done = load();
+    ticks.forEach(function (b) {
+      var on = done.indexOf(b.getAttribute('data-id')) > -1;
+      b.classList.toggle('done', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.parentNode.parentNode.classList.toggle('done', on);
+    });
+    if (count) count.textContent = done.length + ' of ' + ticks.length;
+  }
+  ticks.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var done = load();
+      var id = b.getAttribute('data-id');
+      var at = done.indexOf(id);
+      if (at > -1) { done.splice(at, 1); } else { done.push(id); }
+      save(done);
+      paintTicks();
+    });
+  });
+  paintTicks();
+})();
+</script>
 </body>
 </html>

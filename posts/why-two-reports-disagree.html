@@ -5,57 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Two reports, two numbers: find where the definitions diverged — The BI Workbench</title>
   <meta name="description" content="Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Two reports, two numbers: find where the definitions diverged","description":"Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.","url":"https://thebiworkbench.com/posts/why-two-reports-disagree","mainEntityOfPage":{"@type":"WebPage","@id":"https://thebiworkbench.com/posts/why-two-reports-disagree"},"dateModified":"2026-11-24","author":{"@type":"Person","name":"Shobhan Tula","url":"https://thebiworkbench.com/about"},"publisher":{"@type":"Organization","name":"The BI Workbench","url":"https://thebiworkbench.com"},"image":"https://thebiworkbench.com/assets/share-card.png","articleSection":"Data modeling, Governance","inLanguage":"en"}</script>
   <link rel="canonical" href="https://thebiworkbench.com/posts/why-two-reports-disagree">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="The BI Workbench">
-  <meta property="og:title" content="Two reports, two numbers: find where the definitions diverged">
-  <meta property="og:description" content="Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.">
-  <meta property="og:url" content="https://thebiworkbench.com/posts/why-two-reports-disagree">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Two reports, two numbers: find where the definitions diverged">
-  <meta name="twitter:description" content="Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.">
+  <link rel="alternate" type="application/rss+xml" title="The BI Workbench" href="/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <meta property="og:image" content="https://thebiworkbench.com/assets/share-card.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="The BI Workbench">
+  <meta property="og:title" content="Two reports, two numbers: find where the definitions diverged — The BI Workbench">
+  <meta property="og:description" content="Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.">
+  <meta property="og:url" content="https://thebiworkbench.com/posts/why-two-reports-disagree">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Two reports, two numbers: find where the definitions diverged — The BI Workbench">
+  <meta name="twitter:description" content="Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.">
+  <meta property="og:image" content="https://thebiworkbench.com/assets/og-why-two-reports-disagree.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="The BI Workbench: ten years of dashboards, and what actually broke.">
-  <link rel="stylesheet" href="/assets/style.css?v=5">
+  <link rel="stylesheet" href="/assets/style.css?v=6">
 </head>
-<body>
-
+<body data-post="why-two-reports-disagree">
+<div class="progress" aria-hidden="true"><span></span></div>
 <header class="site-head">
   <div class="inner">
-    <a class="wordmark" href="/">The BI <span>Workbench</span></a>
+    <a class="lockup" href="/"><span class="mark">BI</span><span class="wordmark">The BI <b>Workbench</b></span></a>
     <nav class="site-nav">
-      <a href="/">Writing</a>
       <a href="/about">About</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="mailto:tulashobhan@gmail.com">Email</a>
     </nav>
   </div>
 </header>
+<div class="rule"></div>
+<article class="post-grid">
+    <aside class="rail">
+      <p class="mono rail-label">Data modeling, Governance</p>
+      <div class="rail-ticks" aria-hidden="true"></div>
+      <nav class="toc" aria-label="Contents">
+        <p class="mono toc-label">In this piece</p>
+        <ol>
+          <li><a href="#s1"><span>01</span>Both numbers are usually right</a></li>
+          <li><a href="#s2"><span>02</span>Start with what each report claims, not with its query</a></li>
+          <li><a href="#s3"><span>03</span>Count rows before you compare sums</a></li>
+          <li><a href="#s4"><span>04</span>The five places a definition usually forks</a></li>
+          <li><a href="#s5"><span>05</span>Fix the definition, not the number</a></li>
+          <li><a href="#s6"><span>06</span>The argument costs more than the error</a></li>
+        </ol>
+      </nav>
+    </aside>
 
-<article class="wrap">
-  <div class="head">
-    <h1>Two reports, two numbers: find where the definitions diverged</h1>
-    <p class="post-meta">7 min read &middot; Data modeling, Governance &middot; Reviewed 24 November 2026</p>
-  </div>
+    <div class="post-body">
+      <p class="kicker mono">Article — Data modeling, Governance</p>
+      <h1>Two reports, two numbers: find where the definitions diverged</h1>
 
-  <p>A finance director has two reports open on the same screen. Both claim to show revenue for October. The numbers differ by an amount that matters, and the meeting is in an hour. Someone asks which one is right, and the honest answer is that you don't know yet.</p>
+      <dl class="specs">
+        <div><dt>Reviewed</dt><dd class="teal">24 Nov 2026</dd></div>
+        <div><dt>Read</dt><dd>7 min</dd></div>
+        <div><dt>Sections</dt><dd>06</dd></div>
+        <div><dt>Field</dt><dd>Data modeling</dd></div>
+      </dl>
 
-  <p>I've been on both sides of that question — defending a number, and being the person who quietly undermined one. What I've taken from it is that this is rarely a bug. A report doesn't produce a number. It produces a number plus a dozen decisions about what to include, most of them made by someone who has since moved to another team.</p>
+      <p class="byline"><span class="mark">BI</span><b>Shobhan Tula</b><span>·</span><span>Tampa, FL</span></p>
 
-  <h2>Both numbers are usually right</h2>
+      <p class="lede">A finance director has two reports open on the same screen. Both claim to show revenue for October. The numbers differ by an amount that matters, and the meeting is in an hour. Someone asks which one is right, and the honest answer is that you don't know yet.</p>
 
-  <p>Drop the assumption that one of them is broken. In the reconciliations I've worked through, both reports were computing exactly what they had been told to compute. They were answering slightly different questions, and both were labeled Revenue — October.</p>
+      <details class="toc-mobile">
+        <summary>Contents — 06 sections</summary>
+        <ol>
+          <li><a href="#s1"><span>01</span>Both numbers are usually right</a></li>
+          <li><a href="#s2"><span>02</span>Start with what each report claims, not with its query</a></li>
+          <li><a href="#s3"><span>03</span>Count rows before you compare sums</a></li>
+          <li><a href="#s4"><span>04</span>The five places a definition usually forks</a></li>
+          <li><a href="#s5"><span>05</span>Fix the definition, not the number</a></li>
+          <li><a href="#s6"><span>06</span>The argument costs more than the error</a></li>
+        </ol>
+      </details>
+
+<p>I've been on both sides of that question — defending a number, and being the person who quietly undermined one. What I've taken from it is that this is rarely a bug. A report doesn't produce a number. It produces a number plus a dozen decisions about what to include, most of them made by someone who has since moved to another team.</p>
+
+      <section id="s1">
+        <h2><span class="num">01</span>Both numbers are usually right</h2>
+        <p>Drop the assumption that one of them is broken. In the reconciliations I've worked through, both reports were computing exactly what they had been told to compute. They were answering slightly different questions, and both were labeled Revenue — October.</p>
 
   <p>That's not a software failure. It's a naming failure, and it's harder to fix, because nothing crashes and no one gets paged. Two definitions can both be correct for their own purpose. They just can't both be called the same name without someone eventually comparing them in a meeting.</p>
 
   <p>So the job isn't to find the wrong report. It's to find the point where two paths split, and then decide which path the number should take.</p>
 
-  <h2>Start with what each report claims, not with its query</h2>
+      </section>
 
-  <p>Before opening a single line of SQL, write five things down for each report: the measure, the period, the grain, the population, and the as-of time. Five lines each, taken from the report and its metadata rather than from memory, in a document both report owners can see.</p>
+      <section id="s2">
+        <h2><span class="num">02</span>Start with what each report claims, not with its query</h2>
+        <p>Before opening a single line of SQL, write five things down for each report: the measure, the period, the grain, the population, and the as-of time. Five lines each, taken from the report and its metadata rather than from memory, in a document both report owners can see.</p>
 
   <ul>
     <li><strong>Measure.</strong> Gross or net? Units or dollars? What exactly is summed?</li>
@@ -69,9 +113,11 @@
 
   <p>If you can't fill in one of the five from the report itself, that is already a finding. The report isn't self-describing, and the next person to open it will have the same argument with the same information you have.</p>
 
-  <h2>Count rows before you compare sums</h2>
+      </section>
 
-  <p>Sums tell you that something is different. Counts tell you where.</p>
+      <section id="s3">
+        <h2><span class="num">03</span>Count rows before you compare sums</h2>
+        <p>Sums tell you that something is different. Counts tell you where.</p>
 
   <p>Take one report and walk it backward — the sheet or visual, the query behind it, the view that query selects from, the tables under that view. At every layer, count rows with that report's own filters applied, and write the numbers side by side with the same counts from the other report. The first layer where the counts diverge is the layer where the definition forked. Everything above it is downstream noise.</p>
 
@@ -83,10 +129,16 @@
     <span class="note-label">Where to be careful</span>
     <p>Counts that differ aren't proof of a mistake: two reports at different grain never match row-for-row. Compare at a common grain first.</p>
   </div>
+      <figure class="fig">
+        <p class="fig-label mono"><span><b>Fig. 1</b> — Where the two counts split</span><span>Schematic</span></p>
+        <svg viewBox="0 0 600 260" role="img" aria-label="Two columns of tick marks, one for each report, across four layers: source table, view, query, visual. The counts match at every layer except the last, where report B has one tick fewer." font-family="IBM Plex Mono, monospace"><g><text x="152" y="18" font-size="9" fill="#0d4a47" text-anchor="start" font-weight="500" letter-spacing="0.9">REPORT A</text><text x="384" y="18" font-size="9" fill="#0d4a47" text-anchor="start" font-weight="500" letter-spacing="0.9">REPORT B</text><text x="0" y="47" font-size="9" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.9">SOURCE TABLE</text><line x1="104" y1="52" x2="600" y2="52" stroke="rgba(23,20,15,.13)" stroke-width="1"/><text x="0" y="99" font-size="9" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.9">VIEW</text><line x1="104" y1="104" x2="600" y2="104" stroke="rgba(23,20,15,.13)" stroke-width="1"/><text x="0" y="151" font-size="9" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.9">QUERY</text><line x1="104" y1="156" x2="600" y2="156" stroke="rgba(23,20,15,.13)" stroke-width="1"/><text x="0" y="203" font-size="9" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.9">VISUAL</text><line x1="104" y1="208" x2="600" y2="208" stroke="rgba(23,20,15,.13)" stroke-width="1"/><line x1="152" y1="24" x2="152" y2="203" stroke="rgba(23,20,15,.30)" stroke-width="1" stroke-dasharray="2 4"/><line x1="384" y1="24" x2="384" y2="203" stroke="rgba(23,20,15,.30)" stroke-width="1" stroke-dasharray="2 4"/><rect x="152" y="40" width="9" height="8" fill="#17140f"/><rect x="165" y="40" width="9" height="8" fill="#17140f"/><rect x="178" y="40" width="9" height="8" fill="#17140f"/><rect x="191" y="40" width="9" height="8" fill="#17140f"/><rect x="204" y="40" width="9" height="8" fill="#17140f"/><rect x="217" y="40" width="9" height="8" fill="#17140f"/><rect x="230" y="40" width="9" height="8" fill="#17140f"/><rect x="384" y="40" width="9" height="8" fill="#17140f"/><rect x="397" y="40" width="9" height="8" fill="#17140f"/><rect x="410" y="40" width="9" height="8" fill="#17140f"/><rect x="423" y="40" width="9" height="8" fill="#17140f"/><rect x="436" y="40" width="9" height="8" fill="#17140f"/><rect x="449" y="40" width="9" height="8" fill="#17140f"/><rect x="462" y="40" width="9" height="8" fill="#17140f"/><rect x="152" y="92" width="9" height="8" fill="#17140f"/><rect x="165" y="92" width="9" height="8" fill="#17140f"/><rect x="178" y="92" width="9" height="8" fill="#17140f"/><rect x="191" y="92" width="9" height="8" fill="#17140f"/><rect x="204" y="92" width="9" height="8" fill="#17140f"/><rect x="217" y="92" width="9" height="8" fill="#17140f"/><rect x="230" y="92" width="9" height="8" fill="#17140f"/><rect x="384" y="92" width="9" height="8" fill="#17140f"/><rect x="397" y="92" width="9" height="8" fill="#17140f"/><rect x="410" y="92" width="9" height="8" fill="#17140f"/><rect x="423" y="92" width="9" height="8" fill="#17140f"/><rect x="436" y="92" width="9" height="8" fill="#17140f"/><rect x="449" y="92" width="9" height="8" fill="#17140f"/><rect x="462" y="92" width="9" height="8" fill="#17140f"/><rect x="152" y="144" width="9" height="8" fill="#17140f"/><rect x="165" y="144" width="9" height="8" fill="#17140f"/><rect x="178" y="144" width="9" height="8" fill="#17140f"/><rect x="191" y="144" width="9" height="8" fill="#17140f"/><rect x="204" y="144" width="9" height="8" fill="#17140f"/><rect x="217" y="144" width="9" height="8" fill="#17140f"/><rect x="230" y="144" width="9" height="8" fill="#17140f"/><rect x="384" y="144" width="9" height="8" fill="#17140f"/><rect x="397" y="144" width="9" height="8" fill="#17140f"/><rect x="410" y="144" width="9" height="8" fill="#17140f"/><rect x="423" y="144" width="9" height="8" fill="#17140f"/><rect x="436" y="144" width="9" height="8" fill="#17140f"/><rect x="449" y="144" width="9" height="8" fill="#17140f"/><rect x="462" y="144" width="9" height="8" fill="#17140f"/><rect x="152" y="196" width="9" height="8" fill="#17140f"/><rect x="165" y="196" width="9" height="8" fill="#17140f"/><rect x="178" y="196" width="9" height="8" fill="#17140f"/><rect x="191" y="196" width="9" height="8" fill="#17140f"/><rect x="204" y="196" width="9" height="8" fill="#17140f"/><rect x="217" y="196" width="9" height="8" fill="#17140f"/><rect x="230" y="196" width="9" height="8" fill="#17140f"/><rect x="384" y="196" width="9" height="8" fill="#cf9612"/><rect x="397" y="196" width="9" height="8" fill="#cf9612"/><rect x="410" y="196" width="9" height="8" fill="#cf9612"/><rect x="423" y="196" width="9" height="8" fill="#cf9612"/><rect x="436" y="196" width="9" height="8" fill="#cf9612"/><rect x="449" y="196" width="9" height="8" fill="#cf9612"/><line x1="376" y1="212" x2="470" y2="212" stroke="#cf9612" stroke-width="1.5"/><text x="152" y="232" font-size="9" fill="#0d4a47" text-anchor="start" font-weight="500" letter-spacing="0.9">FIRST LAYER WHERE THE TWO COUNTS DIFFER</text><text x="152" y="250" font-size="10" fill="#6a6152" text-anchor="start" font-weight="400" letter-spacing="0.4">Everything above it is downstream noise.</text></g></svg>
+        <figcaption class="fig-note">Count rows for both reports at each layer and write the two columns side by side. The first layer where the ticks differ is the layer where the definitions forked; everything above it is downstream noise. The ticks stand for a count, not for a real one.</figcaption>
+      </figure>
+      </section>
 
-  <h2>The five places a definition usually forks</h2>
-
-  <p>Once you've done this a few times you stop expecting a novel cause. The same handful of decisions account for most disagreements I've chased:</p>
+      <section id="s4">
+        <h2><span class="num">04</span>The five places a definition usually forks</h2>
+        <p>Once you've done this a few times you stop expecting a novel cause. The same handful of decisions account for most disagreements I've chased:</p>
 
   <ul>
     <li><strong>Grain and join fan-out.</strong> One order with three line items is three rows after the join, so a sum taken after the join counts the order header three times. One report aggregates before joining; the other doesn't.</li>
@@ -98,42 +150,122 @@
 
   <p>In my experience the first two are the common ones by a wide margin. Duplicate rows from a join and an undocumented exclusion account for most of the revenue arguments I've been pulled into, and neither shows up in any documentation.</p>
 
-  <h2>Fix the definition, not the number</h2>
+      </section>
 
-  <p>The tempting repair is to adjust one report until it matches the other. That works for exactly one month. The next time the underlying data shifts, the two reports drift apart again, and now nobody remembers which one was patched to match what.</p>
+      <section id="s5">
+        <h2><span class="num">05</span>Fix the definition, not the number</h2>
+        <p>The tempting repair is to adjust one report until it matches the other. That works for exactly one month. The next time the underlying data shifts, the two reports drift apart again, and now nobody remembers which one was patched to match what.</p>
 
   <p>Write the metric down once instead: a plain-English sentence, the grain, the inclusions and exclusions, the source of record, a named owner, and the date it was last confirmed. One page per metric that people actually use. I think a short document someone maintains beats a 600-column data dictionary nobody opens, because the dictionary documents columns while the argument is always about decisions.</p>
 
   <p>Then decide which report becomes the source of record for this number, and where the other one stands. It either points at the same definition or it carries a visible note naming the definition it uses and why. Keeping a second definition is fine — some genuinely serve a different purpose. Presenting it under the same label as the first one is not.</p>
 
-  <h2>The argument costs more than the error</h2>
+      </section>
 
-  <p>A wrong number is expensive once. Two numbers that nobody trusts are expensive every month: analysts spend the morning reconciling, the director decides which report to believe based on who presented it, and the eventual fix gets deprioritized because the number was, in the end, sort of close.</p>
+      <section id="s6">
+        <h2><span class="num">06</span>The argument costs more than the error</h2>
+        <p>A wrong number is expensive once. Two numbers that nobody trusts are expensive every month: analysts spend the morning reconciling, the director decides which report to believe based on who presented it, and the eventual fix gets deprioritized because the number was, in the end, sort of close.</p>
 
   <p>So I don't treat this as cleanup work. Tracing a definition back to where it forked is the point where the business's language and the warehouse's tables finally have to agree, and that's the most useful modeling work available. The finding is rarely that one report is broken. It's that a decision was made years ago, never written down, and is now nobody's.</p>
-  <p class="review-line">Reviewed 24 November 2026. The tracing method here is not tied to a tool version, but the ways definitions drift do change with how teams build. If your versions of this story end differently, <a href="mailto:tulashobhan@gmail.com">tell me</a>.</p>
 
-  <div class="read-next">
-    <p class="label">Read next</p>
-    <ul>
-      <li>
-        <a href="/posts/dashboard-first-ten-seconds">What a stakeholder sees in your dashboard in the first ten seconds</a>
-        <span>Once the number is right, this is what decides whether it gets used.</span>
-      </li>
-      <li>
-        <a href="/posts/workflow-migration-audit">Before you migrate 2,000 workflows, build the inventory</a>
-        <span>The same definition problem at portfolio scale: what exists, what to keep, what to retire.</span>
-      </li>
-    </ul>
-  </div>
-</article>
+      </section>
+
+      <p class="review-line">Reviewed 24 November 2026. The tracing method here is not tied to a tool version, but the ways definitions drift do change with how teams build. If your versions of this story end differently, <a href="mailto:tulashobhan@gmail.com">tell me</a>.</p>
+
+      <div class="read-next">
+        <p class="label">Read next</p>
+        <ul>
+        <li><a href="/posts/tableau-performance">Your Tableau dashboard is slow. Check these five things first.</a><span>The same tracing habit, applied to a query instead of a number.</span></li>
+        <li><a href="/posts/workflow-migration-audit">Before you migrate 2,000 workflows, build the inventory</a><span>Two definitions of one metric is how a migration quietly doubles in scope.</span></li>
+        <li><a href="/posts/dashboard-first-ten-seconds">What a stakeholder sees in your dashboard in the first ten seconds</a><span>Once the number is right, this is what decides whether it gets used.</span></li>
+        </ul>
+        <a class="all" href="/">&larr; All writing</a>
+      </div>
+    </div>
+  </article>
 
 <footer class="site-foot">
-  <div class="wrap">
-    <p>The BI Workbench. Written by Shobhan Tula, a BI developer in Tampa.</p>
-    <p><a href="/">&larr; All writing</a></p>
+  <div class="inner">
+    <div>
+      <p class="big">The BI Workbench</p>
+      <p class="mono">Shobhan Tula — Tampa, FL — Opinion and experience, not professional advice</p>
+    </div>
+    <nav class="mono">
+      <a href="/">Writing</a>
+      <a href="/about">About</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="mailto:tulashobhan@gmail.com">Email</a>
+    </nav>
   </div>
 </footer>
+<script>
+(function () {
+  var bar = document.querySelector('.progress span');
+  function paint() {
+    if (!bar) return;
+    var root = document.documentElement;
+    var max = root.scrollHeight - root.clientHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, root.scrollTop / max) : 0) + ')';
+  }
+  window.addEventListener('scroll', paint, { passive: true });
+  window.addEventListener('resize', paint);
+  paint();
 
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  var targets = links.map(function (a) {
+    return document.getElementById(a.getAttribute('href').slice(1));
+  });
+  if (links.length && 'IntersectionObserver' in window) {
+    var seen = [];
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var i = targets.indexOf(e.target);
+        if (i < 0) return;
+        if (e.isIntersecting) {
+          if (seen.indexOf(i) < 0) seen.push(i);
+        } else {
+          seen = seen.filter(function (n) { return n !== i; });
+        }
+      });
+      var active = seen.length ? Math.min.apply(null, seen) : -1;
+      links.forEach(function (a, i) { a.classList.toggle('on', i === active); });
+    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+    targets.forEach(function (t) { if (t) io.observe(t); });
+  }
+
+  var post = document.body.getAttribute('data-post');
+  var ticks = [].slice.call(document.querySelectorAll('.tick'));
+  if (!post || !ticks.length) return;
+  var key = 'biwb-checks-' + post;
+  var count = document.querySelector('[data-tick-count]');
+  function load() {
+    try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { return []; }
+  }
+  function save(v) {
+    try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {}
+  }
+  function paintTicks() {
+    var done = load();
+    ticks.forEach(function (b) {
+      var on = done.indexOf(b.getAttribute('data-id')) > -1;
+      b.classList.toggle('done', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.parentNode.parentNode.classList.toggle('done', on);
+    });
+    if (count) count.textContent = done.length + ' of ' + ticks.length;
+  }
+  ticks.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var done = load();
+      var id = b.getAttribute('data-id');
+      var at = done.indexOf(id);
+      if (at > -1) { done.splice(at, 1); } else { done.push(id); }
+      save(done);
+      paintTicks();
+    });
+  });
+  paintTicks();
+})();
+</script>
 </body>
 </html>

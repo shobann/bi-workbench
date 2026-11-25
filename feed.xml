@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The BI Workbench</title>
+    <link>https://thebiworkbench.com/</link>
+    <atom:link href="https://thebiworkbench.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Ten years of dashboards, and what actually broke. Notes on Tableau, data modeling, BI governance and migration work.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Nov 2026 09:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Two reports, two numbers: find where the definitions diverged</title>
+      <link>https://thebiworkbench.com/posts/why-two-reports-disagree</link>
+      <guid isPermaLink="true">https://thebiworkbench.com/posts/why-two-reports-disagree</guid>
+      <description>Two reports, one month of revenue, two different numbers. A practical way to trace where the metric definitions diverged, and how to stop it repeating.</description>
+      <category>Data modeling, Governance</category>
+      <pubDate>Tue, 24 Nov 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Your Tableau dashboard is slow. Check these five things first.</title>
+      <link>https://thebiworkbench.com/posts/tableau-performance</link>
+      <guid isPermaLink="true">https://thebiworkbench.com/posts/tableau-performance</guid>
+      <description>A practical order of operations for diagnosing a slow Tableau workbook: connection, query, calculations, marks, then filters.</description>
+      <category>Tableau, performance</category>
+      <pubDate>Mon, 23 Nov 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Before you migrate 2,000 workflows, build the inventory</title>
+      <link>https://thebiworkbench.com/posts/workflow-migration-audit</link>
+      <guid isPermaLink="true">https://thebiworkbench.com/posts/workflow-migration-audit</guid>
+      <description>How to inventory and score a large Alteryx or ETL estate before a migration, and why the retire column matters more than the rebuild one.</description>
+      <category>Migration, Alteryx</category>
+      <pubDate>Mon, 23 Nov 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>What a stakeholder sees in your dashboard in the first ten seconds</title>
+      <link>https://thebiworkbench.com/posts/dashboard-first-ten-seconds</link>
+      <guid isPermaLink="true">https://thebiworkbench.com/posts/dashboard-first-ten-seconds</guid>
+      <description>Five things a reader checks before they read a single chart, and the details that quietly undermine an otherwise good dashboard.</description>
+      <category>Dashboard design</category>
+      <pubDate>Mon, 23 Nov 2026 09:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

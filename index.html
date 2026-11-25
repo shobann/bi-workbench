@@ -5,8 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The BI Workbench — ten years of dashboards, and what actually broke</title>
   <meta name="description" content="Notes on Tableau, data modeling, BI governance and migration work from a developer with ten years in production analytics.">
-  <meta name="google-site-verification" content="tCEgdzMNBKSjmA7z3Q3jCD1u356SxkMRoxni_63T9MQ" />
+  <meta name="google-site-verification" content="tCEgdzMNBKSjmA7z3Q3jCD1u356SxkMRoxni_63T9MQ">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The BI Workbench","url":"https://thebiworkbench.com","description":"Notes on Tableau, data modeling, BI governance and migration work from a developer with ten years in production analytics.","inLanguage":"en","author":{"@type":"Person","name":"Shobhan Tula","url":"https://thebiworkbench.com/about"}}</script>
   <link rel="canonical" href="https://thebiworkbench.com/">
+  <link rel="alternate" type="application/rss+xml" title="The BI Workbench" href="/feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="The BI Workbench">
   <meta property="og:title" content="The BI Workbench — ten years of dashboards, and what actually broke">
@@ -15,82 +23,124 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The BI Workbench — ten years of dashboards, and what actually broke">
   <meta name="twitter:description" content="Notes on Tableau, data modeling, BI governance and migration work from a developer with ten years in production analytics.">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <meta property="og:image" content="https://thebiworkbench.com/assets/share-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="The BI Workbench: ten years of dashboards, and what actually broke.">
-  <link rel="stylesheet" href="/assets/style.css?v=5">
+  <link rel="stylesheet" href="/assets/style.css?v=6">
 </head>
-<body>
-
+<body data-post="home">
 <header class="site-head">
   <div class="inner">
-    <a class="wordmark" href="/">The BI <span>Workbench</span></a>
+    <a class="lockup" href="/"><span class="mark">BI</span><span class="wordmark">The BI <b>Workbench</b></span></a>
     <nav class="site-nav">
-      <a href="/">Writing</a>
       <a href="/about">About</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="mailto:tulashobhan@gmail.com">Email</a>
     </nav>
   </div>
 </header>
+<div class="rule"></div>
+<main>
+  <section class="wrap opening">
+    <div>
+      <p class="labeltag mono">Latest — revised 24 Nov 2026</p>
+      <h1><a href="/posts/why-two-reports-disagree">Two reports, two numbers: find where the definitions diverged</a></h1>
+      <p class="lede">A finance director has two reports open on the same screen. Both claim to show revenue for October. The numbers differ by an amount that matters, and the meeting is in an hour. Someone asks which one is right, and the honest answer is that you don't know yet.</p>
+      <div class="prose">
+        <p>I've been on both sides of that question — defending a number, and being the person who quietly undermined one. What I've taken from it is that this is rarely a bug. A report doesn't produce a number. It produces a number plus a dozen decisions about what to include, most of them made by someone who has since moved to another team.</p>
+      </div>
+      <a class="continue" href="/posts/why-two-reports-disagree"><b>Continue reading</b> <span aria-hidden="true">→</span> <span class="mid">7 min · Data modeling</span></a>
+    </div>
 
-<section class="hero">
-  <div class="wrap">
-    <p class="kicker">Ten years of BI, written down</p>
-    <h1>Ten years of dashboards, and what actually broke.</h1>
-    <p class="lede">Notes on the part of analytics that doesn't fit in the documentation: why the workbook is slow, why the report nobody owns keeps failing, and how to decide what to migrate before you migrate it.</p>
-  </div>
-</section>
+    <aside class="rail">
+      <div class="box">
+        <h2>About this piece</h2>
+        <div class="spec-row"><span>Reviewed</span><b>24 Nov 2026</b></div>
+        <div class="spec-row"><span>Read</span><b>7 minutes</b></div>
+        <div class="spec-row"><span>Sections</span><b>06</b></div>
+        <div class="spec-row"><span>Field</span><b>Data modeling</b></div>
+      </div>
+      <p class="next mono">Next in the index <b>↓</b><br>Three more pieces on<br>modeling, performance<br>and migration.</p>
+    </aside>
+  </section>
 
-<main class="wrap">
-  <p class="section-label">Writing</p>
+  <section class="wrap contents">
+    <div class="contents-head mono">
+      <span>Index — 2026</span>
+      <span><b>04</b> pieces</span>
+    </div>
 
-  <ul class="post-list">
-    <li>
-      <a href="/posts/why-two-reports-disagree">
-        <h2>Two reports, two numbers: find where the definitions diverged</h2>
-        <p class="meta">7 min read &middot; Data modeling, Governance &middot; Reviewed 24 Nov 2026</p>
+    <a class="entry" href="/posts/why-two-reports-disagree">
+      <span class="n">01</span>
+      <div>
+        <h2>Two reports, two numbers: find where the definitions diverged <span class="here-tag">Latest</span></h2>
         <p class="summary">A report is a number plus a dozen unwritten decisions. Count rows at every layer until the counts split, then write the definition down.</p>
-      </a>
-    </li>
-    <li>
-      <a href="/posts/tableau-performance">
-        <h2>Your Tableau dashboard is slow. Check these five things first.</h2>
-        <p class="meta">7 min read &middot; Tableau, performance &middot; Reviewed 23 Nov 2026</p>
-        <p class="summary">In the order that actually finds the problem — starting with the query, not the chart.</p>
-      </a>
-    </li>
-    <li>
-      <a href="/posts/workflow-migration-audit">
-        <h2>Before you migrate 2,000 workflows, build the inventory</h2>
-        <p class="meta">6 min read &middot; Migration, Alteryx &middot; Reviewed 23 Nov 2026</p>
-        <p class="summary">A migration plan is only as good as your list of what exists. What to record, how to score complexity, and why the retire column matters more than the rebuild one.</p>
-      </a>
-    </li>
-    <li>
-      <a href="/posts/dashboard-first-ten-seconds">
-        <h2>What a stakeholder sees in your dashboard in the first ten seconds</h2>
-        <p class="meta">5 min read &middot; Dashboard design &middot; Reviewed 23 Nov 2026</p>
-        <p class="summary">It isn't your color palette. It's whether the question, the number and the source are visible without being asked.</p>
-      </a>
-    </li>
-  </ul>
+        <p class="meta mono"><b>Data modeling, Governance</b> · 7 min · Reviewed 24 Nov 2026</p>
+      </div>
+      <span class="arrow" aria-hidden="true">↘</span>
+    </a>
 
-  <div class="about-block">
-    <p style="margin-bottom:8px"><strong>What this is.</strong> A place to write down what ten years of building BI in healthcare, life sciences and manufacturing taught me — in enough detail to be useful to whoever inherits the next workbook. No sponsored posts, no newsletter pop-up. If it ever earns anything, it'll be through clearly-labeled affiliate links and a paid template — the writing comes first.</p>
-    <p style="margin-bottom:0"><a href="/about">More about the site &rarr;</a></p>
-    <p style="margin-bottom:0;font-size:13px;color:#5f686d">Every article shows the date it was last checked against how the tools behave now.</p>
-  </div>
+    <a class="entry" href="/posts/tableau-performance">
+      <span class="n">02</span>
+      <div>
+        <h2>Your Tableau dashboard is slow. Check these five things first.</h2>
+        <p class="summary">In the order that actually finds the problem — starting from the query, not the chart.</p>
+        <p class="meta mono"><b>Tableau, performance</b> · 7 min · Reviewed 23 Nov 2026</p>
+      </div>
+      <span class="arrow" aria-hidden="true">↘</span>
+    </a>
+
+    <a class="entry" href="/posts/workflow-migration-audit">
+      <span class="n">03</span>
+      <div>
+        <h2>Before you migrate 2,000 workflows, build the inventory</h2>
+        <p class="summary">A migration plan is only as good as your list of what exists. What to record, how to score complexity, and why the retire column matters more than the rebuild one.</p>
+        <p class="meta mono"><b>Migration, Alteryx</b> · 6 min · Reviewed 23 Nov 2026</p>
+      </div>
+      <span class="arrow" aria-hidden="true">↘</span>
+    </a>
+
+    <a class="entry" href="/posts/dashboard-first-ten-seconds">
+      <span class="n">04</span>
+      <div>
+        <h2>What a stakeholder sees in your dashboard in the first ten seconds</h2>
+        <p class="summary">It isn't your color palette. It's whether the question, the number and the source are visible without being asked.</p>
+        <p class="meta mono"><b>Dashboard design</b> · 5 min · Reviewed 23 Nov 2026</p>
+      </div>
+      <span class="arrow" aria-hidden="true">↘</span>
+    </a>
+  </section>
+
+  <section class="wrap about">
+    <div class="blurb">
+      <p class="label mono">What this is</p>
+      <p>A place to write down what ten years of building BI in healthcare, life sciences and manufacturing taught me — in enough detail to be useful to whoever inherits the next workbook. No sponsored posts, no newsletter pop-up. If it ever earns anything, it'll be through clearly-labeled affiliate links and a paid template — the writing comes first.</p>
+      <p>Every piece is dated, and revised when the tools change.</p>
+      <a class="more" href="/about">More about the site</a>
+    </div>
+    <ul class="spec-mini">
+      <li><span>Articles published</span><b>04</b></li>
+      <li><span>Last reviewed</span><b>24 Nov 2026</b></li>
+      <li><span>Sponsored posts</span><b>None</b></li>
+      <li><span>Corrections</span><b>By email</b></li>
+    </ul>
+  </section>
 </main>
 
 <footer class="site-foot">
-  <div class="wrap">
-    <p>The BI Workbench. Written by Shobhan Tula, a BI developer in Tampa.</p>
-    <p>Everything here is opinion and experience, not professional advice.</p>
+  <div class="inner">
+    <div>
+      <p class="big">The BI Workbench</p>
+      <p class="mono">Shobhan Tula — Tampa, FL — Opinion and experience, not professional advice</p>
+    </div>
+    <nav class="mono">
+      <a href="/">Writing</a>
+      <a href="/about">About</a>
+      <a href="/feed.xml">RSS</a>
+      <a href="mailto:tulashobhan@gmail.com">Email</a>
+    </nav>
   </div>
 </footer>
-
 </body>
 </html>
